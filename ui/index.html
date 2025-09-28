@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake News Detection API</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="title">
+                <span class="icon">🔍</span>
+                Fake News Detection
+            </h1>
+            <p class="subtitle">AI-powered news authenticity analysis</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Input Section -->
+            <section class="input-section">
+                <div class="card">
+                    <h2 class="section-title">Analyze News Article</h2>
+                    <div class="input-group">
+                        <label for="newsText" class="input-label">
+                            Paste your news article text below:
+                        </label>
+                        <textarea 
+                            id="newsText" 
+                            class="text-input" 
+                            placeholder="Enter news article content here...&#10;&#10;Example: 'Breaking: Scientists discover cure for aging! Doctors hate this one simple trick that pharmaceutical companies don't want you to know about...'"
+                            rows="8"
+                        ></textarea>
+                        <div class="input-footer">
+                            <span id="charCount" class="char-count">0 characters</span>
+                        </div>
+                    </div>
+                    
+                    <button id="analyzeBtn" class="analyze-btn" type="button">
+                        <span class="btn-icon">🚀</span>
+                        <span class="btn-text">Analyze Article</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section">
+                <div id="resultsCard" class="card results-card hidden">
+                    <h2 class="section-title">Analysis Results</h2>
+                    
+                    <!-- Loading State -->
+                    <div id="loadingState" class="loading-state hidden">
+                        <div class="spinner"></div>
+                        <p>Analyzing article...</p>
+                    </div>
+
+                    <!-- Results Content -->
+                    <div id="resultsContent" class="results-content hidden">
+                        <div class="result-header">
+                            <div id="predictionBadge" class="prediction-badge"></div>
+                            <div id="confidenceScore" class="confidence-score"></div>
+                        </div>
+                        
+                        <div class="result-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Analysis:</span>
+                                <p id="analysisText" class="detail-value"></p>
+                            </div>
+                            
+                            <div class="result-meta">
+                                <div class="meta-item">
+                                    <span class="meta-label">Text Length:</span>
+                                    <span id="textLength" class="meta-value"></span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-label">Processed:</span>
+                                    <span id="timestamp" class="meta-value"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Error State -->
+                    <div id="errorState" class="error-state hidden">
+                        <div class="error-icon">⚠️</div>
+                        <h3 class="error-title">Analysis Failed</h3>
+                        <p id="errorMessage" class="error-message"></p>
+                        <button id="retryBtn" class="retry-btn">Try Again</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- API Info Section -->
+            <section class="api-info-section">
+                <div class="card api-info">
+                    <h3 class="info-title">
+                        <span class="info-icon">ℹ️</span>
+                        About This API
+                    </h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <strong>Endpoint:</strong> 
+                            <code>POST http://localhost:8080/detect</code>
+                        </div>
+                        <div class="info-item">
+                            <strong>Status:</strong> 
+                            <span id="apiStatus" class="status-indicator">Checking...</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Technology:</strong> 
+                            Core Java HTTP Server + Gson
+                        </div>
+                    </div>
+                    
+                    <details class="api-details">
+                        <summary>Show API Details</summary>
+                        <div class="code-block">
+                            <h4>Request Format:</h4>
+                            <pre><code>{
+  "text": "Your news article content here..."
+}</code></pre>
+                            
+                            <h4>Response Format:</h4>
+                            <pre><code>{
+  "prediction": "Fake" | "Real",
+  "confidence": 0.87,
+  "analysis": "Analysis explanation...",
+  "textLength": 150,
+  "timestamp": "Thu Sep 26 15:30:45 UTC 2024"
+}</code></pre>
+                        </div>
+                    </details>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 Fake News Detection API | Built with Core Java</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
